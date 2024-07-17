@@ -1,0 +1,29 @@
+
+
+.btn-primary{
+    color: white;
+    background-color: black;
+    border-color: black;
+}
+.btn-primary:hover{
+    background-color: white;
+    color: black;
+}
+
+.btn-secondary{
+    color: white;
+    background-color: black;
+    border-color: black;
+}
+.btn-secondary:hover{
+    background-color: white;
+    color: black;
+}
+.card{
+    background-color: #AA998F;
+    display: flex;
+    justify-content: center;
+    padding: 75px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+}
+

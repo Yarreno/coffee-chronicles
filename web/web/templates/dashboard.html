@@ -1,0 +1,205 @@
+{% load my_extras %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/dashboard.css">
+    <title>Dashboard</title>
+  </head>
+
+
+  <body style = " background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/static/logo.JPG); 
+  background-attachment: fixed;
+  background-position: center;">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="dashboard">CaffeineChronicles</a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="dashboard">Dashboard</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="about">About</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item logout">
+              <a class="nav-link" href="#logout">Logout</a>
+          </li>
+      </ul>
+  </div>
+</nav>
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <img
+            id="graphicImage"
+            class="img-fluid"
+            style="max-height: 500px"
+            src=""
+            alt="Graphic"
+            hidden
+          />
+        </div>
+      </div>
+    </div>
+
+    
+
+
+    <div class="container-fluid">
+      <div class="row" style="justify-content: space-evenly; margin-top: 32px;">
+          <div class="col-md-3 card">
+            <button class="gradient-button" onclick="sendRequestGraph('Figure1', 'BarCharts')">
+              Frequency of Coffee Consumption
+            </button>
+          </div>
+          <div class="col-md-3 card">
+            <button class="gradient-button" onclick="sendRequestGraph('Figure2', 'PieCharts')">
+              Preference for Hot or Cold Coffee
+            </button>
+          </div>
+          <div class="col-md-3 card">
+            <button class="gradient-button" onclick="sendRequestGraph('Figure3', 'BarCharts')">
+              Favorite Type of Coffee by Gender
+            </button>
+          </div>
+          <div class="col-md-3 card">
+            <button
+            class="gradient-button"
+            onclick="sendRequestGraph('Figure4', 'LineCharts')"
+          >
+           Preferred Coffee Consumption Time By Age Group
+          </button>
+          </div>
+        <div class="col-md-3 card">
+          <button
+            class="gradient-button"
+            onclick="sendRequestGraph('Figure5', 'BarCharts')"
+          >
+           Seasonal Coffee Consumption
+          </button>
+        </div>
+        <div class="col-md-3 card">
+          <button
+            class="gradient-button"
+            onclick="sendRequestGraph('Figure6', 'BarCharts')"
+          >
+           Environment Preference for Coffee Consumption
+          </button>
+        </div>
+        <div class="col-md-3 card">
+          <button
+            class="gradient-button"
+            onclick="sendRequestGraph('Figure7', 'BarCharts')"
+          >
+           Cup Preference for Coffee
+          </button>
+        </div>
+        <div class="col-md-3 card">
+          <button
+            class="gradient-button"
+            onclick="sendRequestGraph('Figure8', 'PieCharts')"
+          >
+           Perception of Coffee Addiction
+          </button>
+        </div>
+        <div class="col-md-3 card">
+          <button
+            class="gradient-button"
+            onclick="sendRequestGraph('Figure9', 'PieCharts')"
+          >
+           Utilization of Campaigns and Discounts
+          </button>
+        </div>
+        <div class="col-md-3 card">
+          <button
+            class="gradient-button"
+            onclick="sendRequestGraph('Figure10', 'BarCharts')"
+          >
+           Budget for Buying Coffee
+          </button>
+        </div>
+        <div class="col-md-3 card">
+          <button
+            class="gradient-button"
+            onclick="sendRequestGraph('Figure14', 'Histograms')"
+          >
+          Distribution of Age Among Respondents and Their Favorite Coffee Types
+          </button>
+        </div>
+        <div class="col-md-3 card">
+          <button
+            class="gradient-button"
+            onclick="sendRequestGraph('Figure15', 'Histograms')"
+          >
+          Distribution of Education Status
+          </button>
+        </div>
+        <div class="col-md-3 card">
+          <button
+            class="gradient-button"
+            onclick="sendRequestGraph('Figure18', 'LineCharts')"
+          >
+          Trend of Coffee Budget in Different Monthly Income
+          </button>
+        </div>
+        <div class="col-md-3 card">
+          <button
+            class="gradient-button"
+            onclick="sendRequestGraph('Figure19', 'Histograms')"
+          >
+           Distribution of Marital Status 
+          </button>
+        </div>
+        <div class="col-md-3 card">
+          <button
+            class="gradient-button"
+            onclick="sendRequestGraph('Figure20', 'Histograms')"
+          >
+          Reasons for Consuming Coffee in Different Ages
+          </button>
+          </div>
+      </div>
+    </div>
+
+    
+  </body>
+
+  <script>
+    function sendRequestGraph(graph, type) {
+      event.preventDefault();
+
+      const postData = {
+        graph: graph,
+        type: type,
+      };
+
+      console.log(postData);
+
+      fetch("/dashboard_api", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("graphicImage").src = data.imagePath;
+          document.getElementById("graphicImage").hidden = false;
+        });
+    }
+  </script>
+</html>

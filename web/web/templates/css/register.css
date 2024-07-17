@@ -1,0 +1,38 @@
+
+
+.btn-primary{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: black;
+    border-color: black;
+}
+
+.btn-primary:hover{
+    background-color: white;
+    color: black;
+}
+
+.link-registered{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 16px;
+    width: 50%;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+.link-registered:hover{
+    color: black;
+}
+
+.card{
+    background-color: #AA998F;
+    display: flex;
+    justify-content: center;
+    padding: 75px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
